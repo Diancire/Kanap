@@ -22,24 +22,24 @@ function recoverApi(){
 
 // Afficher les éléments du produit
 
-function appearProduct(article){
+function appearProduct(product){
     // Afficher l'image
     let img = document.createElement("img");
-    img.src = article.imageUrl;
-    img.alt = article.altTxt;
+    img.src = product.imageUrl;
+    img.alt = product.altTxt;
     document.querySelector(".item__img").appendChild(img);
 
     // Afficher le titre
-    document.getElementById("title").innerHTML = article.name;
+    document.getElementById("title").innerHTML = product.name;
     
     // Afficher le prix 
-    document.getElementById("price").innerHTML = article.price;
+    document.getElementById("price").innerHTML = product.price;
 
     // Afficher la description
-    document.getElementById("description").innerHTML = article.description;
+    document.getElementById("description").innerHTML = product.description;
     
     // Afficher les couleurs 
-    let colors = article.colors;
+    let colors = product.colors;
     for (let color of colors) {
         let optionColor = document.createElement("option");
         document.getElementById("colors").appendChild(optionColor);
@@ -53,8 +53,7 @@ recoverApi();
 // Création d'un produit au panier 
 const cart = document.querySelector("#addToCart");
 // Ajout d'un événement click sur l'élément cart
-cart.addEventListener('click', function(cart){
-    
+cart.addEventListener('click', function(event){
     let color = document.getElementById("colors").value;
     let quantity = document.getElementById("quantity").value;
     // Création d'une variable pour récupérer les données du produit dans la page produit et les stocker dans le Local Storage
@@ -78,13 +77,14 @@ function addToCart(color, quantity, optionProduct) {
         // Récupération des éléments dans le Local Storage
         let cart = localCart();
         // On verifie si le Local Storage existe
-        if (cart) {
+        if (cart !== null) {
             // Vérification du produit dans la panier (même Id et même couleur)
-            checkProduct = cart.find(e => e.id === idProduct && e.color == color);
+            checkProduct = cart.find(element => element.id === idProduct && element.color === color);
             // Si c'est le cas on ajoute la quantité
             if (checkProduct) {
                 let finalQuantity = optionProduct.quantity + checkProduct.quantity;
                 checkProduct.quantity = finalQuantity;
+                // On enregistre les données dans le Local Storage
                 localStorage.setItem("cart", JSON.stringify(cart))
             }
             // Sinon on ajoute un nouveau produit au Local Storage 

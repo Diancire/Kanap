@@ -23,31 +23,30 @@ function appearItems(products){
 
         // Insertion de l'élément "a"
         let linkProduct = document.createElement("a");
-        linkProduct.setAttribute("href", `./product.html?id=${product._id}`)
+        linkProduct.setAttribute("href", `./product.html?id=${product._id}`);
+        items.appendChild(linkProduct);
 
         // Insertion de l'élément "article"
-        let articleProduct = document.createElement("article")
-        linkProduct.appendChild(articleProduct)
+        let articleProduct = document.createElement("article");
+        linkProduct.appendChild(articleProduct);
 
         // Insertion de l'élément "img"
-        let imgProduct = document.createElement("img")
-        imgProduct.src = product.imageUrl
-        imgProduct.alt = product.altTxt
-        articleProduct.appendChild(imgProduct)
+        let imgProduct = document.createElement("img");
+        imgProduct.src = product.imageUrl;
+        imgProduct.alt = product.altTxt;
+        articleProduct.appendChild(imgProduct);
 
         // Insertion de l'élément "h3"
-        let nameProduct = document.createElement("h3")
-        nameProduct.classList.add("productName")
-        nameProduct.innerHTML = product.name
-        articleProduct.appendChild(nameProduct)
+        let nameProduct = document.createElement("h3");
+        nameProduct.classList.add("productName");
+        nameProduct.innerHTML = product.name;
+        articleProduct.appendChild(nameProduct);
 
         // Insertion de l'élément "p"
-        let descriptionProduct = document.createElement("p")
-        descriptionProduct.classList.add("productDescription")
-        descriptionProduct.textContent = product.description
-        articleProduct.appendChild(descriptionProduct)
-        linkProduct.appendChild(articleProduct)
-    items.appendChild(linkProduct)
+        let descriptionProduct = document.createElement("p");
+        descriptionProduct.classList.add("productDescription");
+        descriptionProduct.textContent = product.description;
+        articleProduct.appendChild(descriptionProduct);
     }
 }
 
