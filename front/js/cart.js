@@ -10,7 +10,7 @@ function localCart(){
 
 let cart = localCart();
 // Si le panier est vide 
-if(cart === null || cart === 0){
+if(cart === null || cart == 0){
     let emptyCart = "Votre panier est vide";
     cartItems.innerText = emptyCart;
 }
@@ -31,7 +31,7 @@ else {
         });
     }
 
-    // Fonction pour afficher la page panier 
+    // Fonction pour afficher les produits la page panier 
     function appearCart(api, cart){
         // Boucle qui permet d'aller récupérer tous les produits dans le Local Storage
         for(let products of cart){
@@ -195,8 +195,6 @@ let nameReg = /^([a-zA-Z,éêèàëÉÈÊË.'-]+[ ]?){2,}$/;
 // Adresse
 let addressReg = /^[a-zA-Z0-9\s,'-]*$/;
 
-let formulaire = document.querySelector("cart__order__form");
-
 // Validation des données saisies par l'utilisateur dans le formulaire
 function userForm() {
 
@@ -264,7 +262,7 @@ userForm();
 orderSubmit.addEventListener("click", function(event){
     event.preventDefault();
     // Si le panier est vide 
-    if (cart === null || cart === 0){
+    if (cart === null || cart == 0){
         alert("Votre panier est vide");
     }
     // Sinon si tous les champs ne sont pas remplis

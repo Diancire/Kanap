@@ -65,7 +65,7 @@ cart.addEventListener('click', function(event){
     addToCart(color, quantity, optionProduct);
 })
 
-// Récupération du panier 
+// Récupération du Local Storage
 function localCart() {
     let toCart = JSON.parse(localStorage.getItem("cart"));
     return toCart;
@@ -73,26 +73,26 @@ function localCart() {
 
 function addToCart(color, quantity, optionProduct) {
     // Vérification des données ajoutée par le client 
-    if (color !== "" && quantity >= 0 && quantity <= 100) {
+    if (color !== "" && quantity > 0 && quantity <= 100) {
         // Récupération des éléments dans le Local Storage
         let cart = localCart();
-        // On verifie si le Local Storage existe
+        // On verifie si le panier existe
         if (cart !== null) {
             // Vérification du produit dans la panier (même Id et même couleur)
             checkProduct = cart.find(element => element.id === idProduct && element.color === color);
-            // Si c'est le cas on ajoute la quantité
+            // Si le produit est déjà dans le panier, on ajoute la quantité
             if (checkProduct) {
                 let finalQuantity = optionProduct.quantity + checkProduct.quantity;
                 checkProduct.quantity = finalQuantity;
                 // On enregistre les données dans le Local Storage
                 localStorage.setItem("cart", JSON.stringify(cart))
             }
-            // Sinon on ajoute un nouveau produit au Local Storage 
+            // Sinon le produit n'est pas dans la panier 
             else {
                 cart.push(optionProduct);
                 localStorage.setItem("cart", JSON.stringify(cart));
             }
-        // Sinon on crée un tableau vide qu'on crée dans la Local Storage 
+        // Sinon le panier est vide  
         } else {
             cart = [];
             cart.push(optionProduct);
